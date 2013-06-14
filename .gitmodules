@@ -25,3 +25,6 @@
 [submodule "solarized"]
 	path = solarized
 	url = https://github.com/bbatsov/solarized-emacs
+[submodule "yasnippet"]
+	path = yasnippet
+	url = git://github.com/capitaomorte/yasnippet.git
