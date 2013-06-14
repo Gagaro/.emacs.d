@@ -2,6 +2,7 @@
 
 ;;; fill-column-indicator
 
+(add-to-list 'load-path "~/.emacs.d/fill-column-indicator")
 (require 'fill-column-indicator)
 
 (setq-default fci-rule-column 80)
