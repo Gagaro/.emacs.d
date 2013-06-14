@@ -22,3 +22,6 @@
 [submodule "fill-column-indicator"]
 	path = fill-column-indicator
 	url = git://github.com/alpaker/Fill-Column-Indicator.git
+[submodule "solarized"]
+	path = solarized
+	url = https://github.com/bbatsov/solarized-emacs
