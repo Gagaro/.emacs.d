@@ -1,9 +1,6 @@
 [submodule "autopair"]
 	path = autopair
 	url = git://github.com/capitaomorte/autopair.git
-[submodule "fill-column-indicator"]
-      path = fill-column-indicator
-      url = git://github.com/alpaker/Fill-Column-Indicator.git
 [submodule "auto-complete"]
       path = auto-complete
       url = git://github.com/auto-complete/auto-complete.git
@@ -19,3 +16,9 @@
 [submodule "jedi"]
       path = jedi
       url = git://github.com/tkf/emacs-jedi.git
+[submodule "flycheck"]
+	path = flycheck
+	url = git://github.com/lunaryorn/flycheck.git
+[submodule "fill-column-indicator"]
+	path = fill-column-indicator
+	url = git://github.com/alpaker/Fill-Column-Indicator.git
