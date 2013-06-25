@@ -7,6 +7,13 @@
 (setq auto-mode-alist (cons '("\\.zcml$" . xml-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.pt$" . html-mode) auto-mode-alist))
 
+;;; python
+
+(add-to-list 'load-path "~/.emacs.d/python-mode")
+(setq py-install-directory "~/.emacs.d/python-mode")
+(require 'python-mode)
+
+
 ;;; ido
 
 (require 'ido)
