@@ -1,8 +1,11 @@
 (add-to-list 'load-path "~/.emacs.d")
 
 ;;; misc
+(require 'php-mode)
 
+(setq auto-mode-alist (cons '("\\.php$" . php-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.zcml$" . xml-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.pt$" . html-mode) auto-mode-alist))
 
 ;;; ido
 
@@ -23,8 +26,8 @@
 
 (setq-default fci-rule-column 80)
 
-(define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
-(global-fci-mode 1)
+;(define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
+;(global-fci-mode 1)
 
 ;;; trailing whitespace
 
@@ -49,6 +52,12 @@
 (require 'auto-complete-config)
 (ac-config-default)
 
+(set-face-background 'ac-candidate-face "blue")
+(set-face-foreground 'ac-candidate-face "white")
+
+(set-face-background 'ac-selection-face "lightgray")
+(set-face-foreground 'ac-selection-face "black")
+
 ;;; jedi
 
 (autoload 'jedi:setup "jedi" nil t)
@@ -62,11 +71,14 @@
 
 ;;; solarized
 
-(add-to-list 'load-path "~/.emacs.d/solarized")
-(add-to-list 'custom-theme-load-path "~/.emacs.d/solarized")
+;(add-to-list 'load-path "~/.emacs.d/solarized")
+;(add-to-list 'custom-theme-load-path "~/.emacs.d/solarized")
 
 ;;; yasnippet
 
 (add-to-list 'load-path "~/.emacs.d/yasnippet")
 (require 'yasnippet)
+(setq yas-snippet-dirs
+      '("~/.emacs.d/custom/snippets"
+	"~/.emacs.d/yasnippet/snippets"))
 (yas-global-mode 1)
