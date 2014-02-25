@@ -2,17 +2,40 @@
 
 ;;; misc
 (require 'php-mode)
+(require 'yaml-mode)
+(require 'jinja2-mode)
 
 (setq auto-mode-alist (cons '("\\.php$" . php-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.zcml$" . xml-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.pt$" . html-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.less$" . css-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.sls$" . yaml-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.jinja$" . jinja2-mode) auto-mode-alist))
+
+(put 'overwrite-mode 'disabled t)
+
 
 ;;; python
 
-(add-to-list 'load-path "~/.emacs.d/python-mode")
-(setq py-install-directory "~/.emacs.d/python-mode")
-(require 'python-mode)
+(when (load "flymake" t)
+  (defun flymake-pyflakes-init ()
+    (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                       'flymake-create-temp-inplace))
+           (local-file (file-relative-name
+                        temp-file
+                        (file-name-directory buffer-file-name))))
+;      (list "pyflakes" (list local-file))))
+      (list "lintrunner.py" (list local-file))))
+  (add-to-list 'flymake-allowed-file-name-masks
+               '("\\.py\\'" flymake-pyflakes-init)))
 
+(add-hook 'find-file-hook 'flymake-find-file-hook)
+
+(require 'flymake-cursor)
+
+;(add-to-list 'load-path "~/.emacs.d/python-mode")
+;(setq py-install-directory "~/.emacs.d/python-mode")
+;(require 'python-mode)
 
 ;;; ido
 
@@ -33,8 +56,8 @@
 
 (setq-default fci-rule-column 80)
 
-;(define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
-;(global-fci-mode 1)
+(define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
+(global-fci-mode 1)
 
 ;;; trailing whitespace
 
@@ -70,12 +93,6 @@
 (autoload 'jedi:setup "jedi" nil t)
 (add-hook 'python-mode-hook 'jedi:setup)
 
-;;; flycheck
-
-;(add-to-list 'load-path "~/.emacs.d/flycheck")
-;(require 'flycheck)
-;(add-hook 'after-init-hook #'global-flycheck-mode)
-
 ;;; solarized
 
 ;(add-to-list 'load-path "~/.emacs.d/solarized")
@@ -89,3 +106,15 @@
       '("~/.emacs.d/custom/snippets"
 	"~/.emacs.d/yasnippet/snippets"))
 (yas-global-mode 1)
+(custom-set-variables
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(safe-local-variable-values (quote ((encoding . utf-8)))))
+(custom-set-faces
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ )
