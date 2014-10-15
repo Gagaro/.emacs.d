@@ -2,10 +2,10 @@
 
 ;;; misc
 (require 'php-mode)
+(require 'drupal-mode)
 (require 'yaml-mode)
 (require 'jinja2-mode)
 
-(setq auto-mode-alist (cons '("\\.php$" . php-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.zcml$" . xml-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.pt$" . html-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.less$" . css-mode) auto-mode-alist))
@@ -14,6 +14,20 @@
 
 (put 'overwrite-mode 'disabled t)
 
+;;; layout
+(setq-default indent-tabs-mode nil)
+(setq default-tab-width 4)
+(setq js-indent-level 2)
+
+;;; Drupal
+;(require 'web-mode)
+
+(add-to-list 'auto-mode-alist '("\\.\\(module\\|test\\|install\\|theme\\)$" . drupal-mode))
+(add-to-list 'auto-mode-alist '("\\.\\(php\\|inc\\)$" . drupal-mode))
+(add-to-list 'auto-mode-alist '("\\.info" . conf-windows-mode))
+
+(setq load-path (cons "/home/gagaro/.emacs.d/geben" load-path))
+(autoload 'geben "geben" "DBGp protocol frontend, a script debugger" t)
 
 ;;; python
 
@@ -107,14 +121,15 @@
 	"~/.emacs.d/yasnippet/snippets"))
 (yas-global-mode 1)
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(mouse-drag-copy-region nil)
  '(safe-local-variable-values (quote ((encoding . utf-8)))))
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  )
